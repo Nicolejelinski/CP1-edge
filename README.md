@@ -1,8 +1,7 @@
-# Sistema de Monitoramento de Ambiente para Vinheria Agnello
+# Sistema de Monitoramento de Ambiente para Vinheria Agnello:
 Este é um projeto desenvolvido para a Vinheria Agnello, com o objetivo de monitorar as condições ambientais no armazenamento de vinhos. O sistema utiliza sensores para medir a luminosidade, e sinaliza qualquer desvio do limite estipulado por meio de LEDs e um buzzer.
 
-
-# Funcionalidades
+# Funcionalidades:
 O sistema monitora a seguinte grandeza:
 Luminosidade.
 Utiliza um LED verde para indicar que a grandeza está dentro dos limites estipulados.
@@ -11,7 +10,7 @@ Utiliza um LED vermelho para indicar que há um problema grave na grandeza.
 Quando a grandeza está em nível de alerta, um buzzer soa por 3 segundos. O buzzer volta a soar caso a luminosidade permaneça em nível de alerta.
 
 
-# Componentes Necessários
+# Componentes Necessários:
 Arduino Uno R3;
 Protoboard;
 Led Verde;
@@ -20,36 +19,46 @@ Led Amarelo;
 Buzzer;
 Sensor de luminosidade(LDR);
 3 Resistores(220Ω);
-Resistor(10kΩ);
+Resistor(10kΩ).
 
-# Instalação
-Conecte o sensor de luminosidade ao Arduino com o resistor de 10kΩ.
-Conecte os LEDs amarelo, vermelho e verde ao Arduino com o resistor de 220Ω.
-Conecte o buzzer ao Arduino.
+# Instalação:
+# Hardware:
+Conecte o sensor de luminosidade(LDR) ao Arduino.
+Conecte o LDR com o resistor de 10kΩ.
+Conecte os LEDs amarelo, verde e vermelho, e o buzzer, ao Arduino conforme definido no código.
+Conecte os LEDs com os resistores de 220Ω.
+Certifique-se de conectar o buzzer a um pino PWM adequado no seu Arduino.
+
+# Software:
+Abra o arquivo do código-fonte em um ambiente de desenvolvimento integrado para Arduino (como Arduino IDE).
+Carregue o código no Arduino.
+
+# Limites Estipulados:
+
+Os limites de luminosidade podem variar de acordo com as especificidades do ambiente de armazenamento de vinhos. No código fornecido, os limites são definidos, mas podem ser ajustados conforme necessário.
+
+# Alimentação:
+
+Certifique-se de alimentar o Arduino com uma fonte de energia apropriada, como uma porta USB do computador ou uma fonte de alimentação externa.
+
+# Teste:
+
+Após carregar o código no Arduino e conectar todos os componentes, teste o sistema de monitoramento para garantir que os LEDs e o buzzer estejam funcionando corretamente.
+Observe as alterações no comportamento dos LEDs e do buzzer conforme a luminosidade ambiente varia.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Autores 
+Este projeto foi desenvolvido pela equipe de desenvolvedores contratada pela Vinheria Agnello:
+Nicolle Pellegrino Jelinski Rodrigues RM558610;
+Felipe Genistretti Rodrigues RM556348;
+Renan Simões Gonçalves RM555584;
+Gabriel Guilherme  RM558638.
 
 
 
 
 # CP1-edge
-#c++
+# c++
 
 // Definição dos pinos para os componentes conectados ao Arduino
 int RED = 2;        // Pino do LED vermelho
