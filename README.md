@@ -1,51 +1,62 @@
 # CP1-edge
 #c++
 
-int RED = 2; // Define o pino para o LED vermelho
-int YELLOW = 3; // Define o pino para o LED amarelo
-int GREEN = 4; // Define o pino para o LED verde
-int BUZZER = 5; // Define o pino para o buzzer
-int Sensor = A0; // Define o pino para o sensor de luz
+// Definição dos pinos para os componentes conectados ao Arduino
+int RED = 2;        // Pino do LED vermelho
+int YELLOW = 3;     // Pino do LED amarelo
+int GREEN = 4;      // Pino do LED verde
+int BUZZER = 5;     // Pino do buzzer
+int Sensor = A0;    // Pino do sensor de luz
 
 void setup() {
-  Serial.begin(9600); // Inicializa a comunicação serial com uma taxa de 9600 baud
-  pinMode(RED, OUTPUT); // Define o pino do LED vermelho como saída
-  pinMode(YELLOW, OUTPUT); // Define o pino do LED amarelo como saída
-  pinMode(GREEN, OUTPUT); // Define o pino do LED verde como saída
-  pinMode(BUZZER, OUTPUT); // Define o pino do buzzer como saída
-  pinMode(Sensor, INPUT); // Define o pino do sensor de luz como entrada
+  // Inicialização da comunicação serial para depuração a uma velocidade de 9600 bauds
+  Serial.begin(9600);
+  
+  // Configuração dos pinos como entrada ou saída
+  pinMode(RED, OUTPUT);      // Define o pino do LED vermelho como saída
+  pinMode(YELLOW, OUTPUT);   // Define o pino do LED amarelo como saída
+  pinMode(GREEN, OUTPUT);    // Define o pino do LED verde como saída
+  pinMode(BUZZER, OUTPUT);   // Define o pino do buzzer como saída
+  pinMode(Sensor, INPUT);    // Define o pino do sensor de luz como entrada
 }
 
 void loop() {
-  int sensorValue = analogRead(Sensor); // Lê o valor analógico do sensor de luz
-  int i = map(sensorValue, 54, 974, 0, 100); // Mapeia o valor do sensor para uma escala de 0 a 100
-  Serial.println(sensorValue); // Imprime o valor do sensor no monitor serial
-  Serial.println(i); // Imprime o valor mapeado no monitor serial
-  delay(1000); // Aguarda 1 segundo
+  // Leitura do valor analógico fornecido pelo sensor de luz
+  int sensorValue = analogRead(Sensor);
   
-  // Controle dos LEDs e do buzzer baseado no valor mapeado
-  if(i < 20){ // Se o valor mapeado for menor que 20
-    // Iluminação OK, acende o LED verde
+  // Mapeia o valor lido do sensor para um intervalo de 0 a 100
+  int i = map(sensorValue, 54, 974, 0, 100);
+  
+  // Exibe os valores lidos do sensor de luz e sua correspondência mapeada no monitor serial
+  Serial.println(sensorValue); // Imprime o valor analógico lido pelo sensor
+  Serial.println(i);           // Imprime o valor mapeado do sensor
+  delay(1000);                 // Aguarda 1 segundo antes da próxima leitura
+  
+  // Controla o LED verde com base na intensidade de luz medida
+  if(i < 20) { // Se a intensidade de luz for menor que 20, acende o LED verde
     digitalWrite(GREEN, HIGH);
-  } else {
-    // Caso contrário, apaga o LED verde
+  } else {    // Senão, apaga o LED verde
     digitalWrite(GREEN, LOW);
   }
 
-  if(i >= 21 && i <= 70){ // Se o valor mapeado estiver entre 21 e 70
-    // Iluminação em níveis de alerta, acende o LED amarelo
+  // Controla o LED amarelo com base na intensidade de luz medida
+  if(i >= 21 && i <= 70) { // Se a intensidade de luz estiver entre 21 e 70, acende o LED amarelo
     digitalWrite(YELLOW, HIGH);
-  } else {
-    // Caso contrário, apaga o LED amarelo
+  } else {                // Senão, apaga o LED amarelo
     digitalWrite(YELLOW, LOW);
   }
  
-  if(i > 71){ // Se o valor mapeado for maior que 71
-    // Indicando que há um problema, acende o LED vermelho e o buzzer
+  // Se a intensidade de luz for maior que 71, considera-se que há um problema
+  if(i > 71) {
+    // Ativa o LED vermelho e o buzzer
     digitalWrite(RED, HIGH);
     digitalWrite(BUZZER, HIGH);
+    delay(3000);            // Mantém o buzzer ligado por 3 segundos
+    digitalWrite(BUZZER, LOW); // Desliga o buzzer
+    delay(2000);            // Espera 2 segundos
+    digitalWrite(BUZZER, HIGH); // Liga novamente o buzzer
   } else {
-    // Caso contrário, apaga o LED vermelho e o buzzer
+    // Se a intensidade de luz for menor ou igual a 71, apaga o LED vermelho e o buzzer
     digitalWrite(RED, LOW);
     digitalWrite(BUZZER, LOW);
   }
