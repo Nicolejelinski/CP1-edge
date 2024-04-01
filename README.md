@@ -1,3 +1,53 @@
+# Sistema de Monitoramento de Ambiente para Vinheria Agnello
+Este é um projeto desenvolvido para a Vinheria Agnello, com o objetivo de monitorar as condições ambientais no armazenamento de vinhos. O sistema utiliza sensores para medir a luminosidade, e sinaliza qualquer desvio do limite estipulado por meio de LEDs e um buzzer.
+
+
+# Funcionalidades
+O sistema monitora a seguinte grandeza:
+Luminosidade.
+Utiliza um LED verde para indicar que a grandeza está dentro dos limites estipulados.
+Utiliza um LED amarelo para indicar que há um nível de alerta na grandeza.
+Utiliza um LED vermelho para indicar que há um problema grave na grandeza.
+Quando a grandeza está em nível de alerta, um buzzer soa por 3 segundos. O buzzer volta a soar caso a luminosidade permaneça em nível de alerta.
+
+
+# Componentes Necessários
+Arduino Uno R3;
+Protoboard;
+Led Verde;
+Led Vermelho;
+Led Amarelo;
+Buzzer;
+Sensor de luminosidade(LDR);
+3 Resistores(220Ω);
+Resistor(10kΩ);
+
+# Instalação
+Conecte o sensor de luminosidade ao Arduino com o resistor de 10kΩ.
+Conecte os LEDs amarelo, vermelho e verde ao Arduino com o resistor de 220Ω.
+Conecte o buzzer ao Arduino.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # CP1-edge
 #c++
 
