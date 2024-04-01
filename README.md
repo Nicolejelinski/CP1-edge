@@ -1,49 +1,52 @@
 # CP1-edge
+#c++
 
-// C++ code
-// Definição dos pinos dos componentes
-int RED = 2;       // Pino do LED vermelho
-int YELLOW = 3;    // Pino do LED amarelo
-int GREEN = 4;     // Pino do LED verde
-int BUZZER = 5;    // Pino do buzzer
-int Sensor = A0;   // Pino do sensor de luz (análogo A0)
+int RED = 2; // Define o pino para o LED vermelho
+int YELLOW = 3; // Define o pino para o LED amarelo
+int GREEN = 4; // Define o pino para o LED verde
+int BUZZER = 5; // Define o pino para o buzzer
+int Sensor = A0; // Define o pino para o sensor de luz
+
 void setup() {
-  // Inicialização do monitor serial com a taxa de transmissão de 9600 bps
-  Serial.begin(9600);
-  // Configuração dos pinos dos componentes como saídas
-  pinMode(RED, OUTPUT);
-  pinMode(YELLOW, OUTPUT);
-  pinMode(GREEN, OUTPUT); 
-  pinMode(BUZZER, OUTPUT);
+  Serial.begin(9600); // Inicializa a comunicação serial com uma taxa de 9600 baud
+  pinMode(RED, OUTPUT); // Define o pino do LED vermelho como saída
+  pinMode(YELLOW, OUTPUT); // Define o pino do LED amarelo como saída
+  pinMode(GREEN, OUTPUT); // Define o pino do LED verde como saída
+  pinMode(BUZZER, OUTPUT); // Define o pino do buzzer como saída
+  pinMode(Sensor, INPUT); // Define o pino do sensor de luz como entrada
 }
+
 void loop() {
-  // Leitura do valor analógico do sensor de luz
-  int sensorValue = analogRead(Sensor);
-  // Mapeamento do valor lido para um intervalo de 0 a 100
-  int i = map(Sensor, 0, 1023, 0, 100);
-  // Impressão do valor mapeado no monitor serial
-  Serial.println(i);
-  // Controle dos componentes com base no valor do sensor
-  if(i < 60){
-    // Se a intensidade de luz for menor que 60, acende-se o LED verde e apagam-se os LEDs amarelo e vermelho
+  int sensorValue = analogRead(Sensor); // Lê o valor analógico do sensor de luz
+  int i = map(sensorValue, 54, 974, 0, 100); // Mapeia o valor do sensor para uma escala de 0 a 100
+  Serial.println(sensorValue); // Imprime o valor do sensor no monitor serial
+  Serial.println(i); // Imprime o valor mapeado no monitor serial
+  delay(1000); // Aguarda 1 segundo
+  
+  // Controle dos LEDs e do buzzer baseado no valor mapeado
+  if(i < 20){ // Se o valor mapeado for menor que 20
+    // Iluminação OK, acende o LED verde
     digitalWrite(GREEN, HIGH);
-    digitalWrite(YELLOW, LOW);
-    digitalWrite(RED, LOW);
-  }
-  else if (i > 70){
-    // Se a intensidade de luz for maior que 70, acende-se o LED amarelo e apagam-se os LEDs verde e vermelho
+  } else {
+    // Caso contrário, apaga o LED verde
     digitalWrite(GREEN, LOW);
+  }
+
+  if(i >= 21 && i <= 70){ // Se o valor mapeado estiver entre 21 e 70
+    // Iluminação em níveis de alerta, acende o LED amarelo
     digitalWrite(YELLOW, HIGH);
-    digitalWrite(RED, LOW);
-  }
-  else {
-    // Caso contrário, acende-se o LED vermelho, apaga-se o LED amarelo, emite-se um som pelo buzzer e aguarda-se 1 segundo
-    digitalWrite(GREEN, LOW);
-    digitalWrite(RED, HIGH);
+  } else {
+    // Caso contrário, apaga o LED amarelo
     digitalWrite(YELLOW, LOW);
-    tone(BUZZER, 2000, 2000);
-    delay(1000);
   }
-  // Aguarda-se 400 milissegundos antes de repetir o processo
-  delay(400);
+ 
+  if(i > 71){ // Se o valor mapeado for maior que 71
+    // Indicando que há um problema, acende o LED vermelho e o buzzer
+    digitalWrite(RED, HIGH);
+    digitalWrite(BUZZER, HIGH);
+  } else {
+    // Caso contrário, apaga o LED vermelho e o buzzer
+    digitalWrite(RED, LOW);
+    digitalWrite(BUZZER, LOW);
+  }
 }
