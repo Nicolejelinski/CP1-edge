@@ -21,7 +21,7 @@ Sensor de luminosidade(LDR);
 3 Resistores(220Ω);
 Resistor(10kΩ).
 
-# Instalação:
+# Instalação
 # Hardware:
 Conecte o sensor de luminosidade(LDR) ao Arduino.
 Conecte o LDR com o resistor de 10kΩ.
