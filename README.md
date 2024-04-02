@@ -59,7 +59,7 @@ Gabriel Guilherme  RM558638.
 
 # CP1-edge
 # c++
-
+```c++
 // Definição dos pinos para os componentes conectados ao Arduino
 int RED = 2;        // Pino do LED vermelho
 int YELLOW = 3;     // Pino do LED amarelo
@@ -120,3 +120,4 @@ void loop() {
     digitalWrite(BUZZER, LOW);
   }
 }
+```
