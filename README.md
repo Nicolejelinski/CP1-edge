@@ -1,5 +1,5 @@
 # Sistema de Monitoramento de Ambiente para Vinheria Agnello:
-Este é um projeto desenvolvido para a Vinheria Agnello, com o objetivo de monitorar as condições ambientais no armazenamento de vinhos. O sistema utiliza sensores para medir a luminosidade, e sinaliza qualquer desvio do limite estipulado por meio de LEDs e um buzzer.
+Este é um projeto desenvolvido para a Vinheria Agnello, com o objetivo de monitorar as condições no armazenamento de vinhos. O sistema utiliza sensores para medir a luminosidade, e sinaliza qualquer desvio do limite estipulado por meio de LEDs e um buzzer.
 
 # Funcionalidades:
 O sistema monitora a seguinte grandeza:
