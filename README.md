@@ -50,10 +50,6 @@ Observe as alterações no comportamento dos LEDs e do buzzer conforme a luminos
 # Autores 
 Este projeto foi desenvolvido pela equipe de desenvolvedores contratada pela Vinheria Agnello:
 Nicolle Pellegrino Jelinski Rodrigues RM558610;
-Felipe Genistretti Rodrigues RM556348;
-Renan Simões Gonçalves RM555584;
-Gabriel Guilherme  RM558638.
-
 
 
 
